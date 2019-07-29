@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/',(req,res)=>{
-    res.send("This is working Fine I am Happy")
+    res.json("This is working Fine I am Happy")
 })
 
 
