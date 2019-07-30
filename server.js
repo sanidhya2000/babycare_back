@@ -7,10 +7,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/',(req,res)=>{
-    res.json("This is working Fine I am Happy")
+	res.json("this is working")
 })
 
 
 app.listen(PORT,()=>{
-    console.log("App is running ")
+    console.log("App is running on "+PORT)
 })
