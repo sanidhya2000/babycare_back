@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/',(req,res)=>{
-	res.json("this is working")
+	res.json("this is working Sakshi Done with Code")
 })
 
 
