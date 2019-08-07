@@ -1,8 +1,8 @@
 -- Drop table
 
--- DROP TABLE "babyBack".baby_reg_details;
+-- DROP TABLE baby_reg_details;
 
-CREATE TABLE "babyBack".baby_reg_details (
+CREATE TABLE baby_reg_details (
 	uuid varchar(255) NOT NULL,
 	baby_name varchar(255) NOT NULL,
 	fathers_name varchar(255) NOT NULL,
@@ -15,9 +15,9 @@ CREATE TABLE "babyBack".baby_reg_details (
 
 -- Drop table
 
--- DROP TABLE "babyBack".blogs;
+-- DROP TABLE blogs;
 
-CREATE TABLE "babyBack".blogs (
+CREATE TABLE blogs (
 	uuid varchar(255) NOT NULL,
 	blog_id serial NOT NULL,
 	blog_title varchar(255) NOT NULL,
@@ -32,9 +32,9 @@ CREATE TABLE "babyBack".blogs (
 
 -- Drop table
 
--- DROP TABLE "babyBack".doctors;
+-- DROP TABLE doctors;
 
-CREATE TABLE "babyBack".doctors (
+CREATE TABLE doctors (
 	doctor_id varchar(255) NOT NULL,
 	doctor_name varchar(255) NOT NULL,
 	doctor_specialization varchar(255) NOT NULL,
@@ -49,9 +49,9 @@ CREATE TABLE "babyBack".doctors (
 
 -- Drop table
 
--- DROP TABLE "babyBack".notes;
+-- DROP TABLE notes;
 
-CREATE TABLE "babyBack".notes (
+CREATE TABLE notes (
 	uuid varchar(255) NOT NULL,
 	note_id serial NOT NULL,
 	note_text text NOT NULL,
@@ -61,9 +61,9 @@ CREATE TABLE "babyBack".notes (
 
 -- Drop table
 
--- DROP TABLE "babyBack".nutrition_calorie_ideal;
+-- DROP TABLE nutrition_calorie_ideal;
 
-CREATE TABLE "babyBack".nutrition_calorie_ideal (
+CREATE TABLE nutrition_calorie_ideal (
 	id serial NOT NULL,
 	item_id serial NOT NULL,
 	item_name varchar(255) NOT NULL,
@@ -84,9 +84,9 @@ CREATE TABLE "babyBack".nutrition_calorie_ideal (
 
 -- Drop table
 
--- DROP TABLE "babyBack".nutrition_calorie_user;
+-- DROP TABLE nutrition_calorie_user;
 
-CREATE TABLE "babyBack".nutrition_calorie_user (
+CREATE TABLE nutrition_calorie_user (
 	uuid varchar(255) NOT NULL,
 	item_id int4 NOT NULL,
 	date_of_entry date NULL DEFAULT now(),
@@ -97,9 +97,9 @@ CREATE TABLE "babyBack".nutrition_calorie_user (
 
 -- Drop table
 
--- DROP TABLE "babyBack".overall_growth_ideal;
+-- DROP TABLE overall_growth_ideal;
 
-CREATE TABLE "babyBack".overall_growth_ideal (
+CREATE TABLE overall_growth_ideal (
 	id serial NOT NULL,
 	duration int4 NOT NULL,
 	height float8 NOT NULL,
@@ -110,9 +110,9 @@ CREATE TABLE "babyBack".overall_growth_ideal (
 
 -- Drop table
 
--- DROP TABLE "babyBack".overall_growth_user;
+-- DROP TABLE overall_growth_user;
 
-CREATE TABLE "babyBack".overall_growth_user (
+CREATE TABLE overall_growth_user (
 	uuid varchar(255) NOT NULL,
 	entry_id serial NOT NULL,
 	"date" date NULL DEFAULT now(),
@@ -124,9 +124,9 @@ CREATE TABLE "babyBack".overall_growth_user (
 
 -- Drop table
 
--- DROP TABLE "babyBack".user_detail;
+-- DROP TABLE user_detail;
 
-CREATE TABLE "babyBack".user_detail (
+CREATE TABLE user_detail (
 	uuid varchar(255) NOT NULL,
 	"name" varchar(255) NOT NULL,
 	date_of_joining date NOT NULL,
@@ -137,9 +137,9 @@ CREATE TABLE "babyBack".user_detail (
 
 -- Drop table
 
--- DROP TABLE "babyBack".users;
+-- DROP TABLE users;
 
-CREATE TABLE "babyBack".users (
+CREATE TABLE users (
 	uuid varchar(255) NOT NULL,
 	email varchar(255) NOT NULL,
 	"password" varchar(255) NOT NULL,
@@ -150,9 +150,9 @@ CREATE TABLE "babyBack".users (
 
 -- Drop table
 
--- DROP TABLE "babyBack".vaccinations_ideal;
+-- DROP TABLE vaccinations_ideal;
 
-CREATE TABLE "babyBack".vaccinations_ideal (
+CREATE TABLE vaccinations_ideal (
 	vaccination_id serial NOT NULL,
 	vaccination_name varchar(255) NOT NULL,
 	duration int4 NOT NULL,
@@ -162,9 +162,9 @@ CREATE TABLE "babyBack".vaccinations_ideal (
 
 -- Drop table
 
--- DROP TABLE "babyBack".vaccinations_user;
+-- DROP TABLE vaccinations_user;
 
-CREATE TABLE "babyBack".vaccinations_user (
+CREATE TABLE vaccinations_user (
 	uuid varchar(255) NOT NULL,
 	vaccination_id serial NOT NULL,
 	expected_date date NULL,
