@@ -1,10 +1,10 @@
-//this is use for login and after that it redirect to home page;
+//this is use to user regstertion if he or she enter first time only
 
 const express = require ('express');
 const notesRoute = express.Router();
 
 notesRoute.get('/',(req,res)=>{
-    res.json("Login Api Needs to be Written here")
+    res.json("signup Aip Api Needs to be Written here")
 })
 
 
