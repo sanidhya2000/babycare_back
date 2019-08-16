@@ -11,7 +11,7 @@ const notesRoute=require('./notesApi/notesApi');
 const loginRoute=require('./loginApi/loginApi');
 const signupRoute=require('./signupApi/signupApi');
 const registrationRoute=require('./registrationApi/registrationApi');
-
+const dashBoardRoute=require('../apis/dashBoardApi/dashBoardApi')
 
 
 
@@ -23,7 +23,8 @@ apiRoute.use('/nutrition',nutritionRoute);
 apiRoute.use('/overallGrowth',overallGrowthRoute);
 apiRoute.use('/login',loginRoute);
 apiRoute.use('/signup',signupRoute);
-apiRoute.use('/registration',registrationRoute);
+apiRoute.use('/register',registrationRoute);
+apiRoute.use('/dashBoard',dashBoardRoute);
 
 apiRoute.get('/',(req,res)=>{
     res.json("Inside Apis add slash for more")
