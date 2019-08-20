@@ -5,6 +5,11 @@ const config =require('./config')
 const PORT=process.env.PORT || 3000;
 const app=express()
 app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 app.use(cors());
 const knex = require('knex')(config.getDbDetails);
 const apiRoute=require('./apis/index')

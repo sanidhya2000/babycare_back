@@ -1,7 +1,7 @@
 //this is use for login and after that it redirect to home page;
 
 const express = require ('express');
-const registrationRoute = express.Router();
+const registrationRoute = express.Router(); 
 const config =require('../../config')
 const knex = require('knex')(config.getDbDetails);
 
@@ -12,7 +12,7 @@ registrationRoute.get('/',(req,res)=>{
 
 registrationRoute.post('/',(req,res)=>{
 
-    const {uuid,babyName,fathersName,mothersName,dateOfBirth,gender,mobileNumber,city,avtarLink} =req.body
+    const {uuid,babyName,fathersName,mothersName,dateOfBirth,gender,mobileNumber,city,avtarLink} = req.body
 
     knex('users')
     .where('uuid','=',uuid)
