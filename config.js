@@ -14,7 +14,7 @@ let dbConfig={
         connection: {
             host : 'localhost',
             user : 'postgres',
-            password : 'tiger',
+            password : '123abhaysahu321',
             database : 'baby'
             }
         
@@ -26,6 +26,7 @@ getDbDetails=()=>{
         return dbConfig.production;
     }
     else{
+        
         return dbConfig.developement;
     }
 }
