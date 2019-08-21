@@ -166,8 +166,15 @@ CREATE TABLE vaccinations_ideal (
 
 CREATE TABLE vaccinations_user (
 	uuid varchar(255) NOT NULL,
-	vaccination_id serial NOT NULL,
+	vaccination_id INTEGER NOT NULL,
 	expected_date date NULL,
 	user_response bool NOT NULL DEFAULT false,
 	CONSTRAINT vaccinations_user_fk1 FOREIGN KEY (vaccination_id) REFERENCES vaccinations_ideal(vaccination_id)
 );
+
+
+-- MODIFY TABLE vaccinations_user;
+
+-- we have to add uuid as a FOREIGN KEY to modify the table use this
+
+ALTER TABLE vaccination_user ADD FOREIGN KEY (uuid) REFERENCES users(uuid);
