@@ -9,6 +9,15 @@ vaccinationRoute.get('/',(req,res)=>{
 })
 
 
+
+
+vaccinationRoute.get('/:id', function(req, res) {
+    knex.select().from('vaccinations_user').where('uuid','=', req.params.id).orderBy('vaccination_id').then(function(data) {
+        res.send(data);
+    });
+});
+
+
 vaccinationRoute.post('/', function(req, res) {
     const {uuid, vaccination_id, expected_date, user_response,birthDate}=req.body;
   
@@ -16,7 +25,7 @@ vaccinationRoute.post('/', function(req, res) {
     let exist = 0;
     
     
-    knex.select().from('baby_reg_details').where('uuid','=', uuid).then(function(data){
+    knex.select().from('vaccinations_user').where('uuid','=', uuid).then(function(data){
         
       
         if(data.length)
