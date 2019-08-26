@@ -12,7 +12,7 @@ overallGrowthRoute.get('/',(req,res)=>{
 
 
 
-overallGrowthRoute.post('/submitdata', function(req, res) {
+overallGrowthRoute.post('/submitData', function(req, res) {
     const {uuid,currDate,height,weight}=req.body;
 
 
@@ -34,6 +34,7 @@ overallGrowthRoute.post('/submitdata', function(req, res) {
                 'height':0,
                 'weight':0,
                 'date':finalNextDate
+                //TODO: CHNAGE THE RES TO A PERFECT DATA
             }).into('overall_growth_user').then(data=>{res.json(data)})
             .catch(err=>console.log(err))
         })
@@ -57,6 +58,7 @@ overallGrowthRoute.get('/:id', function(req, res) {
 
 
 overallGrowthRoute.get('/graph/:id', function(req, res){
+    
     let idealDetailes = {};
     let usersDetailes = {};
     let count = {};
@@ -70,14 +72,14 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
         knex.select().from('overall_growth_user').where('uuid','=', req.params.id).orderBy('date').then(function(data) {
             usersDetailes = data;
             console.log(count);
-            console.log(usersDetailes[0].uuid);
-            console.log(idealDetailes[0].duration);
+            console.log(idealDetailes)
+            console.log(usersDetailes)
             const dataheight = [];
             const dataweight = [];
             
             for(let x of Object.keys(usersDetailes))
             {
-                console.log("yes") 
+                console.log(x) 
 
                 dataheight.push({
                     "days": idealDetailes[x].duration,
@@ -92,6 +94,7 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
 
                 })
             }
+            //TODO
             console.log(dataheight);
             console.log(dataweight);
         });
