@@ -37,7 +37,7 @@ overallGrowthRoute.post('/submitdata', function(req, res) {
             }).into('overall_growth_user').then(data=>{res.json(data)})
             .catch(err=>console.log(err))
         })
-
+ 
         
         .then(trx.commit)
         .catch(trx.rollback)
@@ -49,7 +49,10 @@ overallGrowthRoute.post('/submitdata', function(req, res) {
 
 overallGrowthRoute.get('/:id', function(req, res) {
 
+<<<<<<< HEAD
     console.log(req.params.id)
+=======
+>>>>>>> 28ed03a72b769de6cd96b40f44e9ff34316063dd
     knex.raw(`select * from overall_growth_user where date<=now() and uuid='${req.params.id}';`).then(data=>{
         res.json(data.rows)
     })
