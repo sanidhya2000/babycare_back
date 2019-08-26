@@ -24,9 +24,9 @@ overallGrowthRoute.post('/submitdata', function(req, res) {
 
 
         }).andWhere('uuid','=',uuid).andWhere('date','=',currDate).into('overall_growth_user').returning('date').then(date=>{
-           console.log(date)
+           //console.log(date)
             let nextDate=new Date(date[0]);
-            
+            console.log(nextDate)
             nextDate.setDate(nextDate.getDate()+15);
             let finalNextDate=nextDate.getFullYear()+'-'+(nextDate.getMonth()+1)+'-'+nextDate.getDate();
             return trx.insert({
@@ -49,7 +49,8 @@ overallGrowthRoute.post('/submitdata', function(req, res) {
 
 overallGrowthRoute.get('/:id', function(req, res) {
 
-    knex.raw('select * from overall_growth_user where date<=now();').then(data=>{
+    console.log(req.params.id)
+    knex.raw(`select * from overall_growth_user where date<=now() and uuid='${req.params.id}';`).then(data=>{
         res.json(data.rows)
     })
 });
