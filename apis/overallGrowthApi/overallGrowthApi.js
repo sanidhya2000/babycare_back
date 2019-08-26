@@ -24,9 +24,9 @@ overallGrowthRoute.post('/submitdata', function(req, res) {
 
 
         }).andWhere('uuid','=',uuid).andWhere('date','=',currDate).into('overall_growth_user').returning('date').then(date=>{
-           console.log(date)
+           //console.log(date)
             let nextDate=new Date(date[0]);
-            
+            console.log(nextDate)
             nextDate.setDate(nextDate.getDate()+15);
             let finalNextDate=nextDate.getFullYear()+'-'+(nextDate.getMonth()+1)+'-'+nextDate.getDate();
             return trx.insert({

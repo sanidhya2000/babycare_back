@@ -29,6 +29,7 @@ registrationRoute.post('/',(req,res)=>{
         .then(uuid=>{
 
             knex('baby_reg_details').select('*').where('uuid','=',uuid[0]).then(user=>{
+                
                 if(user.length){
                     knex.transaction(trx=>{
                         trx.update({
@@ -64,7 +65,21 @@ registrationRoute.post('/',(req,res)=>{
                         .into('baby_reg_details')
                         .returning('uuid')
                         .then(uuid=>{
-                            res.json({'status':'done','uuid':uuid[0]}).status(200);
+                            
+                            return trx.insert({
+                                uuid:uuid[0],
+                                height:0,
+                                weight:0,
+                                date:dateOfBirth
+                            })
+                            .into('overall_growth_user')
+                            .returning('uuid')
+                            .then(uuid=>{
+                                    res.json({'status':'done','uuid':uuid[0]}).status(200);
+                            })
+
+                            
+                            
                         })
                         .then(trx.commit)
 		                .catch(trx.rollback)
