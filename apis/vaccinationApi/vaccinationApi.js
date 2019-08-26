@@ -9,9 +9,6 @@ vaccinationRoute.get('/',(req,res)=>{
 })
 
 
-<<<<<<< HEAD
-//TODO:
-=======
 
 
 vaccinationRoute.get('/:id', function(req, res) {
@@ -21,7 +18,6 @@ vaccinationRoute.get('/:id', function(req, res) {
 });
 
 
->>>>>>> 28ed03a72b769de6cd96b40f44e9ff34316063dd
 vaccinationRoute.post('/', function(req, res) {
     const {uuid, vaccination_id, expected_date, user_response,birthDate}=req.body;
   
