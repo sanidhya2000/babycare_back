@@ -69,9 +69,8 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
         
         knex.select().from('overall_growth_user').where('uuid','=', req.params.id).orderBy('date').then(function(data) {
             usersDetailes = data;
-            console.log(count);
-            console.log(usersDetailes[0].uuid);
-            console.log(idealDetailes[0].duration);
+            console.log(usersDetailes);
+            
             const dataheight = [];
             const dataweight = [];
             
@@ -94,6 +93,11 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
             }
             console.log(dataheight);
             console.log(dataweight);
+            res.json({
+                dataheight,
+                dataweight
+            });
+            
         });
 
     });
