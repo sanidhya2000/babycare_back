@@ -12,6 +12,8 @@ vaccinationRoute.get('/',(req,res)=>{
 
 
 vaccinationRoute.get('/:id', function(req, res) {
+    //TODO:::VACIINATION NAME Using Raw JOIN 
+    // select * from vaccinations_user vu,vaccinations_ideal vi where vu.vaccination_id=vi.vaccination_id and vu.uuid='2f5f2ca5-4528-47db-8b03-9d90f8058d20';
     knex.select().from('vaccinations_user').where('uuid','=', req.params.id).orderBy('vaccination_id').then(function(data) {
         res.send(data);
     });
@@ -79,7 +81,7 @@ vaccinationRoute.post('/', function(req, res) {
     })
 
     .then(resp=>{
-
+//TODO:DATA
         if(exist)
         {
             res.json("done");
@@ -103,7 +105,7 @@ vaccinationRoute.post('/update_vaccination_detailes', function(req, res){
         trx.update({
             'user_response': 't'
         }).andWhere('uuid', '=', uuid).andWhere('vaccination_id', '=', vaccination_id).into('vaccinations_user').returning('*').then(data=>{
-            res.send(data);
+            res.send(data[0]);
         })
 
         .then(trx.commit)
