@@ -14,6 +14,7 @@ overallGrowthRoute.get('/',(req,res)=>{
 
 overallGrowthRoute.post('/submitData', function(req, res) {
     const {uuid,currDate,height,weight}=req.body;
+    //TODO:delete from overall_growth_user where uuid='2f5f2ca5-4528-47db-8b03-9d90f8058d20' and date='2019-07-26';
 
 
     knex.transaction(trx=>{
@@ -35,7 +36,11 @@ overallGrowthRoute.post('/submitData', function(req, res) {
                 'weight':0,
                 'date':finalNextDate
                 //TODO: CHNAGE THE RES TO A PERFECT DATA:------ task is complete
-            }).into('overall_growth_user').returning('uuid').then(data=>{res.json(data)})
+                
+            }).into('overall_growth_user').returning('uuid').then(data=>{res.json({
+                status:"done",
+                uuid:data[0]//This is how you must send response never pass res directly.
+            })})
             .catch(err=>console.log(err))
         })
  
@@ -54,6 +59,9 @@ overallGrowthRoute.get('/:id', function(req, res) {
     })
 });
 
+const min=(a,b)=>{
+    return a>b;
+}
 
 
 overallGrowthRoute.get('/graph/:id', function(req, res){
@@ -70,11 +78,14 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
         
         knex.select().from('overall_growth_user').where('uuid','=', req.params.id).orderBy('date').then(function(data) {
             usersDetailes = data;
+            console.log(usersDetailes)
+            
+            let iteartions=min(idealDetailes.length,usersDetailes.length);
             
             const dataheight = [];
             const dataweight = [];
             
-            for(let x of Object.keys(usersDetailes))
+            for(let x=0;x<iteartions;x++)
             {
                 console.log(x) 
 
