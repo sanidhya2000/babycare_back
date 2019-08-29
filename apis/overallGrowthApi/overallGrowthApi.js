@@ -24,7 +24,7 @@ overallGrowthRoute.post('/submitData', function(req, res) {
 
 
         }).andWhere('uuid','=',uuid).andWhere('date','=',currDate).into('overall_growth_user').returning('date').then(date=>{
-           //console.log(date)
+
             let nextDate=new Date(date[0]);
             console.log(nextDate)
             nextDate.setDate(nextDate.getDate()+15);
@@ -34,17 +34,16 @@ overallGrowthRoute.post('/submitData', function(req, res) {
                 'height':0,
                 'weight':0,
                 'date':finalNextDate
-                //TODO: CHNAGE THE RES TO A PERFECT DATA
-            }).into('overall_growth_user').then(data=>{res.json(data)})
+                //TODO: CHNAGE THE RES TO A PERFECT DATA:------ task is complete
+            }).into('overall_growth_user').returning('uuid').then(data=>{res.json(data)})
             .catch(err=>console.log(err))
         })
  
         
         .then(trx.commit)
         .catch(trx.rollback)
-    })
-    //INSERT INTO tablename(column1, column2) VALUES(column1_value, column2_value)
-})
+    });
+});
  
 
 
@@ -71,9 +70,7 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
         
         knex.select().from('overall_growth_user').where('uuid','=', req.params.id).orderBy('date').then(function(data) {
             usersDetailes = data;
-            console.log(count);
-            console.log(idealDetailes)
-            console.log(usersDetailes)
+            
             const dataheight = [];
             const dataweight = [];
             
@@ -94,10 +91,12 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
 
                 })
             }
-            //TODO
-            console.log(dataheight);
-            console.log(dataweight);
-        });
+            // TODO is complete
+            res.json({
+                dataheight,
+                dataweight
+            })
+        })
 
     });
     
