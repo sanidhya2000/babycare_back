@@ -70,7 +70,7 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
         
         knex.select().from('overall_growth_user').where('uuid','=', req.params.id).orderBy('date').then(function(data) {
             usersDetailes = data;
-            
+
             const dataheight = [];
             const dataweight = [];
             
@@ -96,11 +96,8 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
                 dataheight,
                 dataweight
             })
-        })
-
-    });
-    
-    
-})
+        });
+    }); 
+});
 
 module.exports = overallGrowthRoute;
