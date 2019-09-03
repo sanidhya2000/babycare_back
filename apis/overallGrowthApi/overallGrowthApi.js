@@ -19,17 +19,24 @@ overallGrowthRoute.post('/submitData', function(req, res) {
 
     knex.transaction(trx=>{
 
-        trx.update({
+        let nextDate=new Date(currDate);
+        nextDate.setDate(nextDate.getDate()+15);
+        let finalNextDate=nextDate.getFullYear()+'-'+(nextDate.getMonth()+1)+'-'+nextDate.getDate();
+        console.log(finalNextDate);
+
+        trx.raw(`delete from overall_growth_user where uuid='${uuid}' and date='${finalNextDate}';`)
+        .then(data=>{
+            console.log(data)
+
+
+        return trx.update({
             'height':height,
             'weight':weight
 
 
         }).andWhere('uuid','=',uuid).andWhere('date','=',currDate).into('overall_growth_user').returning('date').then(date=>{
 
-            let nextDate=new Date(date[0]);
-            console.log(nextDate)
-            nextDate.setDate(nextDate.getDate()+15);
-            let finalNextDate=nextDate.getFullYear()+'-'+(nextDate.getMonth()+1)+'-'+nextDate.getDate();
+            
             return trx.insert({
                 'uuid':uuid,
                 'height':0,
@@ -43,11 +50,13 @@ overallGrowthRoute.post('/submitData', function(req, res) {
             })})
             .catch(err=>console.log(err))
         })
- 
+        .catch(err=>console.log(err));
         
-        .then(trx.commit)
-        .catch(trx.rollback)
-    });
+    }).then(trx.commit)
+    .catch(err=>{
+        console.log(err)
+        trx.rollback})
+})
 });
  
 
@@ -78,10 +87,12 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
         
         knex.select().from('overall_growth_user').where('uuid','=', req.params.id).orderBy('date').then(function(data) {
             usersDetailes = data;
+
             console.log(usersDetailes)
             
             let iteartions=min(idealDetailes.length,usersDetailes.length);
             
+
             const dataheight = [];
             const dataweight = [];
             
@@ -107,11 +118,8 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
                 dataheight,
                 dataweight
             })
-        })
-
-    });
-    
-    
-})
+        });
+    }); 
+});
 
 module.exports = overallGrowthRoute;
