@@ -1,5 +1,8 @@
 # Contributors
-Welcome Contributors
+<<<<<<< CONTRIBUTING.md
+#Welcome Contributors
+=======
+>>>>>>> CONTRIBUTING.md
 
 -[@sanidhyasamadhiya](https://gitlab.com/sanidhya2000)
 
