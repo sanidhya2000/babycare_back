@@ -1,4 +1,3 @@
-
 let dbConfig={
     production:{
         client: 'pg',
@@ -14,7 +13,7 @@ let dbConfig={
         connection: {
             host : 'localhost',
             user : 'postgres',
-            password : '123abhaysahu321',
+            password : 'tiger',
             database : 'baby'
             }
         
