@@ -89,7 +89,7 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
         count = data[0];
         
     })
-    knex.select().from('overall_growth_ideal').then(function(data) {
+    knex.select().from('overall_growth_ideal').orderBy('id').then(function(data) {
         idealDetailes = data;
         
         knex.select().from('overall_growth_user').where('uuid','=', req.params.id).orderBy('date').then(function(data) {
