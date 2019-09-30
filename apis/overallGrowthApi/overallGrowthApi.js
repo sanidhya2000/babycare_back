@@ -69,7 +69,14 @@ overallGrowthRoute.get('/:id', function(req, res) {
 });
 
 const min=(a,b)=>{
-    return a>b;
+    if(a>b)
+    {
+        return b;
+    }
+    else 
+    {
+        return a;
+    }
 }
 
 
@@ -91,12 +98,13 @@ overallGrowthRoute.get('/graph/:id', function(req, res){
             console.log(usersDetailes)
             
             let iteartions=min(idealDetailes.length,usersDetailes.length);
+
             
 
             const dataheight = [];
             const dataweight = [];
             
-            for(let x=0;x<iteartions;x++)
+            for(let x=0;x<(iteartions-1);x++)
             {
                 console.log(x) 
 
